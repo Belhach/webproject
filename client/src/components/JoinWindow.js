@@ -3,7 +3,9 @@ import logo from '../images/logo.png';
 
 const JoinWindow = () => {
     return (
-        <img src={logo} />
+        <div>
+            <img src={logo} />
+        </div>
     )
 }
 

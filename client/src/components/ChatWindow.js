@@ -4,7 +4,9 @@ import logo from '../images/logo.png';
 
 const ChatWindow = () => {
     return (
-        <img src={logo} />
+        <div>
+            <img src={logo} />
+        </div>
     )
 }
 
