@@ -2,13 +2,14 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 
-const router = require('./router');
+
 
 const app = express();
 
 const server = http.createServer(app);
 const io = socketio(server);
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
+const router = require('./router');
 
 io.on('connection', (socket) => {
     console.log('user is connected');

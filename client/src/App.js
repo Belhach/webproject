@@ -6,8 +6,8 @@ import ChatWindow from './components/ChatWindow/ChatWindow';
 
 const App = () => (
     <Router>
-        < Route url_path = "/" component={JoinWindow} />
-        < Route url_path = "/chat" component={ChatWindow} />
+        < Route path = "/" exact component={JoinWindow} />
+        < Route path = "/chat" component={ChatWindow} />
     </Router>    
 );
 
