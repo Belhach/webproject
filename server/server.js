@@ -13,8 +13,13 @@ const router = require('./router');
 
 io.on('connection', (socket) => {
     console.log('user is connected');
+
+    socket.on('join', ({ name, groupName})=>{
+        console.log(name, groupName);
+    });
+    
     socket.on('disconnect', () =>{
-        console.log('user is noew disconnected');
+        console.log('user is now disconnected');
     });
 });
 

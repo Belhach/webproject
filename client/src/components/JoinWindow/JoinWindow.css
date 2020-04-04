@@ -5,7 +5,7 @@
     text-align: center;
     height: 100vh;
     align-items: center;
-    background-image:url(../../images/Background.png);
+    background-color: #454747;
   }
   
   .joinInnerContainer {

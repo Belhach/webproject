@@ -10,11 +10,11 @@ const JoinWindow = () => {
     return (
         <div className='joinOuterContainer'>
             <div className='joinInnerContainer'>
-                <img className='logo' src = {logo}/>
+                <img className='logo' src = {logo} alt='logo'/>
                 <h1 className = "heading"> Join </h1>
-                <div><input placeholder= "Name" className = "joinInput" type = "text" onChange={(event)=> setName(event.target.value)}></input></div>
-                <div><input placeholder= "Group Name" className = "joinInput" type = "text" onChange={(event)=> setGroupName(event.target.value)}></input></div>
-                <Link onClick={event => (!name || !groupName) ? event.preventDefault() : null} to={`./chat?name=${name}&groupName =${groupName}`} >
+                <div><input placeholder= "Name" className = "joinInput" type = "text" onChange={(event)=> setName(event.target.value)}/></div>
+                <div><input placeholder= "Group Name" className = "joinInput" type = "text" onChange={(event)=> setGroupName(event.target.value)}/></div>
+                <Link onClick={event => (!name || !groupName) ? event.preventDefault() : null} to={`./chat?name=${name}&groupName=${groupName}`}>
                     <button className = "button" type = "submit">Sign in</button>
                 </Link>
             </div>
