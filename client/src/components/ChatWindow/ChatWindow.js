@@ -14,7 +14,12 @@ const ChatWindow = ({location}) => {
         socket= io(server);
         setName(name);
         setGroupName(groupName);
-        socket.emit('join',{name,groupName})
+        socket.emit('join',{name,groupName},()=>{;
+        });
+        return () =>{
+            socket.emit('disconnect');
+            socket.off();
+        };
     },[server,location.search]);
 
     return (

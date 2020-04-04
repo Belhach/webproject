@@ -14,7 +14,7 @@ const router = require('./router');
 io.on('connection', (socket) => {
     console.log('user is connected');
 
-    socket.on('join', ({ name, groupName})=>{
+    socket.on('join', ({ name, groupName},callback)=>{
         console.log(name, groupName);
     });
     
