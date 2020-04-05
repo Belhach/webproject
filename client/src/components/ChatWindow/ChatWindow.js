@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
+import './ChatWindow.css'
 let socket;
 const server = 'localhost:5000';
 
@@ -39,7 +40,7 @@ const ChatWindow = ({location}) => {
 
     return (
         <div className='chatOuterContainer'>
-            <div className='chatInnerContainer'>
+            <div className='chatContainer'>
                 <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}/>
             </div>
         </div>
