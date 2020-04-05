@@ -8,6 +8,8 @@ const server = 'localhost:5000';
 const ChatWindow = ({location}) => {
     const [name,setName] = useState('');
     const [groupName,setGroupName] = useState('');
+    const [message,setMessage] = useState([]);
+    const [messages,setMessages] = useState([]);
 
     useEffect(() =>{
         const{ name, groupName } = queryString.parse(location.search);
@@ -22,9 +24,24 @@ const ChatWindow = ({location}) => {
         };
     },[server,location.search]);
 
+    useEffect(() =>{
+        socket.on('message',(message) =>{
+            setMessages([...messages,message]);
+        });
+    }, [messages]);
+
+    const sendMessage = (event) =>{
+        event.preventDefault();
+        if(message){
+            socket.emit('sendMessage', message, () => setMessage(' '));
+        }
+    }
+
     return (
-        <div>
-            <h1>Chat</h1>
+        <div className='chatOuterContainer'>
+            <div className='chatInnerContainer'>
+                <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}/>
+            </div>
         </div>
     )
 }

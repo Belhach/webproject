@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 
+const {addUser, deleteUser, getUser,getUserInGroup} = require('./users.js');
 
 
 const app = express();
@@ -12,12 +13,20 @@ const port = process.env.port || 5000;
 const router = require('./router');
 
 io.on('connection', (socket) => {
-    console.log('user is connected');
-
     socket.on('join', ({ name, groupName},callback)=>{
-        console.log(name, groupName);
+        const {error,user} = addUser({id : socket.id, name, groupName});
+        if(error) return callback(error);
+        socket.join(user.groupName);
+        socket.emit('message', {user: 'admin',text: `${user.name}, welcome to the group :${user.groupName}.`});
+        socket.broadcast.to(user.groupName).emit('message', {user:'admin',text : `${user.name}, has joined the group`});
+
+        callback();
     });
-    
+    socket.on('send message', (message,callback) => {
+        const user = getUser(socket.id);
+        io.to(user.groupName).emit('message', {user : user.name, text: message});
+        callback();
+    });
     socket.on('disconnect', () =>{
         console.log('user is now disconnected');
     });
