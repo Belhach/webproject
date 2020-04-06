@@ -17,12 +17,12 @@ io.on('connection', (socket) => {
         const {error,user} = addUser({id : socket.id, name, groupName});
         if(error) return callback(error);
         socket.join(user.groupName);
-        socket.emit('message', {user: 'admin',text: `${user.name}, welcome to the group :${user.groupName}.`});
+        socket.emit('message', {user: 'Bot',text: `${user.name}, welcome to the group ${user.groupName}.`});
         socket.broadcast.to(user.groupName).emit('message', {user:'admin',text : `${user.name}, has joined the group`});
 
         callback();
     });
-    socket.on('send message', (message,callback) => {
+    socket.on('sendMessage', (message,callback) => {
         const user = getUser(socket.id);
         io.to(user.groupName).emit('message', {user : user.name, text: message});
         callback();

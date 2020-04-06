@@ -3,8 +3,12 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 
 import './ChatWindow.css'
+
 import ClientStatus from '../ClientStatus/ClientStatus';
 import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
+
+
 let socket;
 const server = 'localhost:5000';
 
@@ -44,6 +48,7 @@ const ChatWindow = ({location}) => {
         <div className='chatOuterContainer'>
             <div className='chatContainer'>
                 <ClientStatus groupName = {groupName}/>
+                <Messages messages={messages} name={name}/>
                 <Input message = {message} setMessage={setMessage} sendMessage ={sendMessage} />
             </div>
         </div>
