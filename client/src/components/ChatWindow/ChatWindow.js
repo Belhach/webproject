@@ -3,6 +3,8 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 
 import './ChatWindow.css'
+import ClientStatus from '../ClientStatus/ClientStatus';
+import Input from '../Input/Input';
 let socket;
 const server = 'localhost:5000';
 
@@ -41,7 +43,8 @@ const ChatWindow = ({location}) => {
     return (
         <div className='chatOuterContainer'>
             <div className='chatContainer'>
-                <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}/>
+                <ClientStatus groupName = {groupName}/>
+                <Input message = {message} setMessage={setMessage} sendMessage ={sendMessage} />
             </div>
         </div>
     )

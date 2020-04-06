@@ -4,14 +4,16 @@ import DisconnectedIcon from '../../images/DisconnectedIcon.png';
 
 import './ClientStatus.css';
 
-const ClientStatus = () =>{
-    <div className ='ClientStatus'>
-        <div className='leftInnerContainer'>
-            <img className ='ConnectedIcon' src = {ConnectedIcon} alt = "connectedIcon"/>
-            <h2>Group</h2>
+const ClientStatus = ({groupName}) =>(
+    <div className ="ClientStatus">
+        <div className="leftInnerContainer">
+            <img className ="ConnectedIcon" src = {ConnectedIcon} alt = "connectedIcon"/>
+            <h2>{groupName}</h2>
         </div>
-        <div className='RightInnerContainer'>
+        <div className="rightInnerContainer">
             <a href="/"><img src ={DisconnectedIcon} alt = "DisconnectedIcon"/></a>
         </div>
     </div>
-}
+);
+
+export default ClientStatus;
