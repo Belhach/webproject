@@ -65,8 +65,8 @@ class Draw extends Component{
 
 
     componentDidMount(){
-        this.canvas.width = 500;
-        this.canvas.height = 400;
+        this.canvas.width = 650;
+        this.canvas.height = 500;
         this.ctx = this.canvas.getContext('2d');
         this.ctx.lineJoin = 'round';
         this.ctx.lineCap = 'round';

@@ -1,6 +1,5 @@
 .drawContainer{
     padding-right: 5%;
-    align-items: center;
 }
 
 
@@ -12,6 +11,6 @@
     padding: 20px;
     display: inline-block;
     border: none;
-    width : 13.2cm;
+    width : 17.2cm;
     height: 1.3cm;
   }
