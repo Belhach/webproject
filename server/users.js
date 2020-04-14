@@ -31,6 +31,6 @@ const getUser = (id) =>{
 };
 
 
-const getUserInGroup = (groupName) => users.filter((user) => user.groupName === groupName);
+const getUsersInGroup = (groupName) => users.filter((user) => user.groupName === groupName);
 
-module.exports = {addUser, deleteUser, getUser, getUserInGroup};
+module.exports = {addUser, deleteUser, getUser, getUsersInGroup};

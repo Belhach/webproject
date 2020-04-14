@@ -7,6 +7,7 @@ import './ChatWindow.css'
 import ClientStatus from '../ClientStatus/ClientStatus';
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
+import Draw from '../Draw/Draw';
 
 
 let socket;
@@ -46,6 +47,7 @@ const ChatWindow = ({location}) => {
 
     return (
         <div className='chatOuterContainer'>
+            <Draw/>
             <div className='chatContainer'>
                 <ClientStatus groupName = {groupName}/>
                 <Messages messages={messages} name={name}/>

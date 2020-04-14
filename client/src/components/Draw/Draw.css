@@ -1,0 +1,17 @@
+.drawContainer{
+    padding-right: 5%;
+    align-items: center;
+}
+
+
+.eraseButton {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2979FF;
+    padding: 20px;
+    display: inline-block;
+    border: none;
+    width : 13.2cm;
+    height: 1.3cm;
+  }
