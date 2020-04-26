@@ -44,6 +44,6 @@ io.on('connection', (socket) => {
     });
 });
 
-app.use(router);
 app.use(cors());
+app.use(router);
 server.listen(port, () => console.log('server is running on port : ',port));
