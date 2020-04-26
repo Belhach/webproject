@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
+const cors = require('cors');
 
 const {addUser, deleteUser, getUser,getUsersInGroup} = require('./users.js');
 
@@ -44,4 +45,5 @@ io.on('connection', (socket) => {
 });
 
 app.use(router);
+app.use(cors());
 server.listen(port, () => console.log('server is running on port : ',port));
