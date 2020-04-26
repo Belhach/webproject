@@ -18,6 +18,8 @@ const ChatWindow = ({location}) => {
     const [groupName,setGroupName] = useState('');
     const [message,setMessage] = useState([]);
     const [messages,setMessages] = useState([]);
+    const [lines,setLines] = useState([]);
+    const [line] = useState([]);
 
     useEffect(() =>{
         const{ name, groupName } = queryString.parse(location.search);
@@ -45,9 +47,22 @@ const ChatWindow = ({location}) => {
         }
     }
 
+    useEffect(() =>{
+        socket.on('draw',(line) =>{
+            setLines([...lines,line]);
+        });
+    }, [lines]);
+    
+    const sendLine = (event) => {
+        event.preventDefault();
+        if(line){
+            socket.emit('sendDraw', line, () => setLines([...lines,line]));
+        }    
+    }
+
     return (
         <div className='chatOuterContainer'>
-            <Draw/>
+            <Draw lins={line} setLines = {setLines} sendLine = {sendLine} lines = {lines}/>
             <div className='chatContainer'>
                 <ClientStatus groupName = {groupName}/>
                 <Messages messages={messages} name={name}/>

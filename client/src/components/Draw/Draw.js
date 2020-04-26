@@ -9,6 +9,7 @@ class Draw extends Component{
         this.onMouseMove = this.onMouseMove.bind(this);
         this.endPaintEvent = this.endPaintEvent.bind(this);
         this.erase = this.erase.bind(this);
+        this.ColorLines = this.ColorLines.bind(this);
     }
 
     isPainting = false;
@@ -23,7 +24,23 @@ class Draw extends Component{
         this.prevPos = {offsetX,offsetY};
     }
 
-    onMouseMove({ nativeEvent}){
+
+    ColorLines(nativeEvent){
+        if(this.isPainting){
+            const {offsetX,offsetY} = nativeEvent;
+            const offSetData = {offsetX,offsetY};
+            
+            const positionData= {
+                start : {...this.prevPos},
+                stop : {...offSetData},
+            };
+            this.props.lines = this.props.lines.concat(positionData);
+            this.paint(this.prevPos,offSetData,this.penColor);
+            
+        }
+    }
+
+    onMouseMove({nativeEvent}){
         if(this.isPainting){
             const {offsetX,offsetY} = nativeEvent;
             const offSetData = {offsetX,offsetY};
@@ -37,16 +54,15 @@ class Draw extends Component{
         }
     }
 
+
+
+
     endPaintEvent(){
         if(this.isPainting){
             this.isPainting = false;
         }
     }
 
-
-    static getLine = () => {
-        return this.line;
-    }
 
     paint(prevPos,currPos, strokeStyle){
         const {offsetX,offsetY} = currPos;
@@ -81,10 +97,10 @@ class Draw extends Component{
             this.ctx.lineWidth = 2;
         }
     }
-
+    
     render(){
         return(
-            <div className ='drawContainer'>
+            <div className ='drawOuterContainer'>
                 <canvas
                 ref={(ref) => (this.canvas = ref)}
                 style={{ background: 'black' }}
@@ -92,13 +108,17 @@ class Draw extends Component{
                 onMouseLeave={this.endPaintEvent}
                 onMouseUp={this.endPaintEvent}
                 onMouseMove={this.onMouseMove}
+                onChange = {this.ColorLines}
+                value={this.props.line}
+                onChange={({ target: { value } }) => this.props.setLines[value]}
+                onChange={event => this.props.sendLine(event)}
                 />
-                <div>
+                <div className ='drawInnerContainer'>
                     <button className ='eraseButton' onClick = {this.erase} >Effacer</button>
                 </div>
             </div>
         );
     }
 }
-;
+
     export default Draw;
