@@ -11,7 +11,7 @@ import Draw from '../Draw/Draw';
 
 
 let socket;
-const server = 'localhost:5000';
+const server = 'https://draw-project.herokuapp.com/';
 
 const ChatWindow = ({location}) => {
     const [name,setName] = useState('');
